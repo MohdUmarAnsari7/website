@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Input</title>
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2c3e50;
+  text-align: center;
+  padding: 15px 0;
+}
+
+h1 {
+  color: #ecf0f1;
+  margin-bottom: 10px;
+}
+
+nav {
+  background-color: #2c3e50;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+main {
+  margin: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 10px;
+  border: 1px solid #95a5a6;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+#output div {
+  margin-bottom: 10px;
+  background-color: #ecf0f1;
+  padding: 15px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+#output button {
+  margin-left: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Task</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li class="active"><a href="..\index.html">Home</a></li>
+    
+      <li><a href="fetchAPI.html">Random Dogs</a></li>
+      <li><a href="toDoList.html">To Do List</a></li>
+      <li><a href="tictac.html">Game</a></li>
+     
+    </ul>
+  </nav>
+
+  <main>
+    <label for="userInput">Enter Task:</label>
+    <input type="text" id="userInput">
+    <button onclick="displayInput()">Submit</button>
+
+    <h2>Task List</h2>
+    <div id="output"></div>
+  </main>
+
+  <script>
+      const previous = [];
+
+    function isUnique(current) {
+      return !previous.includes(current.trim()) && current.trim() !== "";
+    }
+
+    function displayInput() {
+      const outputElement = document.getElementById("output");
+      const userInput = document.getElementById("userInput").value;
+
+      if (isUnique(userInput)) {
+        previous.push(userInput.trim());
+        outputElement.innerHTML += `<div>${userInput} <button onclick="removeLine(this)">remove</button><br><br></div>`;
+      } else {
+        alert("It is already exist or null");
+      }
+
+      // Clear the input after submitting
+      document.getElementById("userInput").value = "";
+    }
+
+    function removeLine(element) {
+      const taskToRemove = element.parentNode.firstChild.nodeValue.trim();
+      const indexToRemove = previous.indexOf(taskToRemove);
+
+      if (indexToRemove !== -1) {
+        previous.splice(indexToRemove, 1);
+      }
+      
+      element.parentNode.remove();
+    }
+    //end
+  </script>
+</body>
+</html>

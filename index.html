@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percedence</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+          
+        }
+     
+        h2 {
+            text-align: center; /* Center-align the heading */
+        }
+        nav {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            text-align: center;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #ecf0f1;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 20px;
+        }
+
+        nav img {
+            max-height: 50px;
+            margin-right: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        /* Add a margin to the right of each li except for the last one */
+        nav li:not(:last-child) {
+            margin-right: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            background-color: #3498db; /* Set a base color */
+        }
+
+        nav a:hover {
+            background-color: #2c3e50; /* Darken the color on hover */
+            color: #ecf0f1;
+            transform: scale(1.05); /* Add a subtle scale effect on hover */
+        }
+
+        .para {
+            background: url('Images/image.jpg') center/cover;
+            padding: 50px;
+            color: #2c3e50;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-family: 'Helvetica', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px;
+            margin-bottom: 20px;
+        }
+
+        section.intro {
+            background: url('Images/image.jpg') center/cover;
+            padding: 50px;
+            color: rgb(239, 232, 195);
+            background-color: rgba(255, 255, 255, 0.9);
+            font-family: 'Helvetica', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px;
+            margin-bottom: 20px;
+          
+        }
+
+        /* Additional styling for responsiveness */
+        @media screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+    .container {
+        display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+      margin-top: 20px;
+      
+    }
+
+    .cell {
+      margin: 10px;
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+    }
+
+    .cell img {
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+   
+    .cell p {
+        border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            color: #2c3e50; 
+        }
+  
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1> <img src="Images/Logo.png" alt="">Percedence</h1>
+        <ul>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="Main folder/fetchAPI.html">Random Dogs</a></li>
+            <li><a href="Main folder/toDoList.html">To Do List</a></li>
+            <li><a href="Main folder/tictac.html">Game</a></li>
+        </ul>
+    </nav>
+
+    <section class="intro">
+        Welcome to Percedence, where the synergy of innovation and excellence comes to life in the enchanting realm of digital solutions. As a premier software company, we specialize in crafting extraordinary mobile apps and websites that redefine the very fabric of user experiences.
+
+            Our dedicated team of experts is passionately committed to transforming your visionary ideas into tangible reality through the harmonious blend of cutting-edge technology and captivating design. Whether you're in pursuit of unparalleled mobile app development, captivating web design, or bespoke software solutions, Percedence stands as the beacon of expertise to surpass your every expectation.
+
+            What sets us apart is our unwavering dedication to client success, facilitated through transparent communication and an unwaveringly client-centric approach. At Percedence, we are not just trend-followers but trend-setters. We focus on innovation, ensuring that your digital presence not only remains current but also paints a vision of the future.
+
+            Our ethos revolves around building enduring partnerships and creating digital experiences that resonate with your audience. Let's collaborate and embark on a transformative journey to elevate your brand in the ever-evolving digital landscape.
+
+            Contact us today to discuss how we can breathe life into your digital vision. At Percedence, we don't just create solutions; we craft experiences.</p>
+    </section>
+    <h2>Our Services</h2>
+    <div class="container">
+        <div class="cell" onclick="window.location.href='Main folder/tictac.html';">
+            <img src="Images/tictac.jpeg" alt="tictac" class="item-img">
+            <p class="game">Game</p>
+        </div>
+
+        <div class="cell" onclick="window.location.href='Main folder/fetchAPI.html';">
+            <img src="Images/download.jpeg" alt="dogs" class="item-img">
+            <p>Random Dogs</p>
+        </div>
+
+        <div class="cell" onclick="window.location.href='Main folder/toDoList.html';">
+            <img src="Images/yodo.jpeg" alt="to do list" class="item-img">
+            <p class="List">To-Do List</p>
+            
+        </div>
+    </div>
+    <console class="log"> working</console>
+
+</body>
+
+</html>

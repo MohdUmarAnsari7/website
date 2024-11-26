@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC TAC</title>
+    <style>
+/* Reset and General Styles */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Your Chosen Font', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Add a fallback font */
+body {
+    font-family: 'Your Chosen Font', 'Fallback Font', sans-serif;
+}
+
+/* Header Styles */
+.menu-bar {
+    background-color: #363131;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-bar h1 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.menu-bar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-bar li {
+    margin: 0 15px;
+}
+
+.menu-bar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-bar a:hover {
+    background-color: #555;
+}
+
+/* Game Table Styles */
+#table {
+    border-collapse: collapse;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+#table td {
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+#table td:hover {
+    background-color: #2980b9;
+}
+
+/* Cell Styles */
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+    background-color: #2980b9;
+}
+
+/* Winner Display Styles */
+.winner-display {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #ffffff;
+    background-color: #3498db;
+    border-radius: 5px;
+}
+
+/* Active Cell Styles */
+.cell:active {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="menu-bar">
+        <h1>Random Dogs</h1>
+    <br>    
+        <ul>
+          <li class="active"><a href="..\index.html">Home</a></li>
+          <li class="active"><a href="fetchAPI.html">Random Dogs</a></li>
+          <li><a href="toDoList.html">To Do List</a></li>
+          <li><a href="tictac.html">Game</a></li>
+        </ul>
+      </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Game Table Section -->
+    <div id="table-container">
+        <table id="table">
+            <tr>
+                <td onclick="boxClick(this)" data-cell-index="0"></td>
+                <td onclick="boxClick(this)" data-cell-index="1"></td>
+                <td onclick="boxClick(this)" data-cell-index="2"></td>
+            </tr>
+            <tr>
+                <td onclick="boxClick(this)" data-cell-index="3"></td>
+                <td onclick="boxClick(this)" data-cell-index="4"></td>
+                <td onclick="boxClick(this)" data-cell-index="5"></td>
+            </tr>
+            <tr>
+                <td onclick="boxClick(this)" data-cell-index="6"></td>
+                <td onclick="boxClick(this)" data-cell-index="7"></td>
+                <td onclick="boxClick(this)" data-cell-index="8"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Winner Display Section -->
+    <div class="winner-display"></div>
+
+    <!-- JavaScript Section -->
+    <script>
+        const d = new Date();
+
+        var winner = [];
+        var currentPlayer = 0;
+        var stop = 0;
+
+        function checkWinner() {
+            // Check rows
+            for (var i = 0; i < 9; i += 3) {
+                if (winner[i] === winner[i + 1] && winner[i + 1] === winner[i + 2] && winner[i] !== "") {
+                    return winner[i];
+                }
+            }
+
+            // Check columns
+            for (var i = 0; i <= 2; i++) {
+                if (winner[i] === winner[i + 3] && winner[i + 3] === winner[i + 6] && winner[i] !== "") {
+                    return winner[i];
+                }
+            }
+
+            // Check diagonals
+            if (winner[0] === winner[4] && winner[4] === winner[8] && winner[0] !== "") {
+                return winner[0];
+            }
+
+            else if (winner[2] === winner[4] && winner[4] === winner[6] && winner[2] !== "") {
+                return winner[2];
+            }
+
+            return null;
+        }
+
+        function boxClick(cell) {
+            
+           
+          
+            if (cell.textContent === "" && stop == 0) {
+                if (currentPlayer % 2 === 0) {
+                    winner[cell.dataset.cellIndex] = "X";
+                } else {
+                    winner[cell.dataset.cellIndex] = "O";
+                }
+
+                if(stop == 0){ cell.innerHTML = '<div class="cell">' + winner[cell.dataset.cellIndex] + '</div>';
+                currentPlayer++;
+}
+                var result = checkWinner();
+                if (result) {
+                    document.querySelector(".winner-display").innerHTML = "The winner is: " + result;
+                    stop=1;
+                }
+
+                else if(stop == 0){
+                    console.log(d.setTime(13324038825))
+                    console.log("stop" + stop);
+                    if ( currentPlayer % 2 === 0 ){
+                        document.querySelector(".winner-display").innerHTML = "X it's your turn";
+                    }
+                    else{
+                        document.querySelector(".winner-display").innerHTML = "O it's your turn";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
